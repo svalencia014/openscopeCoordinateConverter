@@ -1,3 +1,6 @@
+#example output
+#script will output here and delete these comments
+
 ["N30d29m36.030", "W81d41m32.237"]
 ["N30d29m24.904", "W81d41m15.246"]
 ["N30d29m31.038", "W81d40m52.075"]
