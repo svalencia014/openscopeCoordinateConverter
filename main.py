@@ -6,10 +6,10 @@ f = open(path + "/output.txt", "w")
 f.write("")
 f.close()
 
-for line in data:
-    if line.startswith('#'):
-        pass
+def convert(line):  
     lineData = line.split(" ")
+    latitude = []
+    longitude = []
     #   Process line
     #   Remove Degree Symbol
     if lineData.__contains__("°"):
@@ -17,17 +17,25 @@ for line in data:
         longitude = lineData[1].split("°")
         latitude = lineData[0].split("'")
         longitude = lineData[1].split("'")
+    elif lineData.__contains__('') or lineData.__contains__(' '):
+        pass
     else:
         latitude = lineData[0].split(".", 2)
         longitude = lineData[1].split(".", 2)
-    
-    if len(latitude[1]) != 3:
-        latitude[1] = "0" + latitude[1]
-    if len(longitude[1]) != 3:
-        longitude[1] = "0" + longitude[1]
+        print(latitude, longitude)
+        if len(latitude[0]) != 3:
+            latitude[0] = "0" + latitude[0]
+        if len(longitude[0]) != 3:
+            longitude[0] = "0" + longitude[0]
 
-    lineOut = f"[\"{latitude[0]}d{latitude[1]}m{latitude[2]}\", \"{longitude[0]}d{longitude[1]}m{longitude[2]}\"]"
-    output = open(path + "/output.txt", "a")
-    output.write(lineOut + "\n")
+        lineOut = f"[\"{latitude[0]}d{latitude[1]}m{latitude[2]}\", \"{longitude[0]}d{longitude[1]}m{longitude[2]}\"]"
+        output = open(path + "/output.txt", "a")
+        output.write(lineOut + "\n")
 
  
+
+for line in data:
+    if line.startswith('#') or line.startswith(" "):
+        pass
+    else: 
+        convert(line)
